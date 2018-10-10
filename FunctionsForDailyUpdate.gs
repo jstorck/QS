@@ -26,7 +26,8 @@ function TransposeEODAllocationsToAllocationHistory() {
 
   // Enter new start of next day positions adjusted for minimum trade size
   targetRange = Allocation_History.getRange(Allocation_History.getLastRow(),17,1,9);
-  targetRange.setFormula("if(abs(B" +lastAllocRow +"-B" +(lastAllocRow-1) +")>=$P" +lastAllocRow +",B" +lastAllocRow +",B" +(lastAllocRow-1) +")");
+  targetRange.setFormula("if(abs(B" +lastAllocRow +"-B" +(lastAllocRow-1) +")>=$P" +lastAllocRow +",B" +lastAllocRow +",B" +(lastAllocRow-1) +")")
+    .setNumberFormat("##0");
   
   // Set formulas for totals
   totalAtOpen = Allocation_History.getRange(Allocation_History.getLastRow(),26,1,1);
@@ -37,9 +38,11 @@ function TransposeEODAllocationsToAllocationHistory() {
     var Prices = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('Prices'), true);
     var lastPriceRow = SpreadsheetApp.getActiveSheet().getLastRow() + 1;
   
-  totalAtOpen.setFormula("sumproduct(Q" +lastAllocRow +":Y" +lastAllocRow +",Prices!B" +lastPriceRow +":J" +lastPriceRow +")"); // Amount invested at next day's opening price
-  totalAtClose.setFormula("sumproduct(Q" +lastAllocRow +":Y" +lastAllocRow +",Prices!K" +lastPriceRow +":S" +lastPriceRow +")"); // Value at next day's closing price
-  dayProfitLoss.setFormula("AA" +lastAllocRow +"-Z" +lastAllocRow); 
+  totalAtOpen.setFormula("sumproduct(Q" +lastAllocRow +":Y" +lastAllocRow +",Prices!B" +lastPriceRow +":J" +lastPriceRow +")")
+    .setNumberFormat("##0"); // Amount invested at next day's opening price
+  totalAtClose.setFormula("sumproduct(Q" +lastAllocRow +":Y" +lastAllocRow +",Prices!K" +lastPriceRow +":S" +lastPriceRow +")")
+    .setNumberFormat("##0"); // Value at next day's closing price
+  dayProfitLoss.setFormula("AA" +lastAllocRow +"-Z" +lastAllocRow).setNumberFormat("##0"); 
   }; // End function to transpose (adjusted) EOD allocations
 
 function AddTodaysOpenClosePrices() { // Add the prices from the dailyprices sheet

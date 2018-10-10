@@ -33,6 +33,7 @@ function TransposeEODAllocationsToAllocationHistory() {
   totalAtOpen = Allocation_History.getRange(Allocation_History.getLastRow(),26,1,1);
   totalAtClose = Allocation_History.getRange(Allocation_History.getLastRow(),27,1,1);
   dayProfitLoss = Allocation_History.getRange(Allocation_History.getLastRow(),28,1,1);
+  cumProfitLoss = Allocation_History.getRange(Allocation_History.getLastRow(),29,1,1);
 
     // Find next row of "Price" sheet to enter formula for totals (next row is next day's open/close)
     var Prices = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('Prices'), true);
@@ -43,7 +44,7 @@ function TransposeEODAllocationsToAllocationHistory() {
   totalAtClose.setFormula("sumproduct(Q" +lastAllocRow +":Y" +lastAllocRow +",Prices!K" +lastPriceRow +":S" +lastPriceRow +")")
     .setNumberFormat("##0"); // Value at next day's closing price
   dayProfitLoss.setFormula("AA" +lastAllocRow +"-Z" +lastAllocRow).setNumberFormat("##0");
-  cumProfitLoss.setFormula("AB" +lastAllocRow +"AC" +lastAllocRow-1).setNumberFormat("##0");
+  cumProfitLoss.setFormula("=AB" +lastAllocRow +"+AC" +(lastAllocRow-1)).setNumberFormat("##0");
   }; // End function to transpose (adjusted) EOD allocations
 
 function AddTodaysOpenClosePrices() { // Add the prices from the dailyprices sheet

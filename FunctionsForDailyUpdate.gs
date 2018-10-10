@@ -42,7 +42,8 @@ function TransposeEODAllocationsToAllocationHistory() {
     .setNumberFormat("##0"); // Amount invested at next day's opening price
   totalAtClose.setFormula("sumproduct(Q" +lastAllocRow +":Y" +lastAllocRow +",Prices!K" +lastPriceRow +":S" +lastPriceRow +")")
     .setNumberFormat("##0"); // Value at next day's closing price
-  dayProfitLoss.setFormula("AA" +lastAllocRow +"-Z" +lastAllocRow).setNumberFormat("##0"); 
+  dayProfitLoss.setFormula("AA" +lastAllocRow +"-Z" +lastAllocRow).setNumberFormat("##0");
+  cumProfitLoss.setFormula("AB" +lastAllocRow +"AC" +lastAllocRow-1).setNumberFormat("##0");
   }; // End function to transpose (adjusted) EOD allocations
 
 function AddTodaysOpenClosePrices() { // Add the prices from the dailyprices sheet

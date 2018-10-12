@@ -35,7 +35,7 @@ function TransposeEODAllocationsToAllocationHistory() {
   dayProfitLoss = Allocation_History.getRange(Allocation_History.getLastRow(),28,1,1);
   cumProfitLoss = Allocation_History.getRange(Allocation_History.getLastRow(),29,1,1);
 
-    // Find next row of "Price" sheet to enter formula for totals (next row is next day's open/close)
+    // Find next row of "Price" sheet in order to enter formula for totals on Alloc History (next row is next day's open/close)
     var Prices = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('Prices'), true);
     var lastPriceRow = SpreadsheetApp.getActiveSheet().getLastRow() + 1;
   
@@ -43,8 +43,8 @@ function TransposeEODAllocationsToAllocationHistory() {
     .setNumberFormat("##0"); // Amount invested at next day's opening price
   totalAtClose.setFormula("sumproduct(Q" +lastAllocRow +":Y" +lastAllocRow +",Prices!K" +lastPriceRow +":S" +lastPriceRow +")")
     .setNumberFormat("##0"); // Value at next day's closing price
-  dayProfitLoss.setFormula("AA" +lastAllocRow +"-Z" +lastAllocRow).setNumberFormat("##0");
-  cumProfitLoss.setFormula("=AB" +lastAllocRow +"+AC" +(lastAllocRow-1)).setNumberFormat("##0");
+  dayProfitLoss.setFormula("AA" +lastAllocRow +"-Z" +lastAllocRow).setNumberFormat("#,##0_);[Red](#,##0)");
+  cumProfitLoss.setFormula("=AB" +lastAllocRow +"+AC" +(lastAllocRow-1)).setNumberFormat("#,##0_);[Red](#,##0)");
   }; // End function to transpose (adjusted) EOD allocations
 
 function AddTodaysOpenClosePrices() { // Add the prices from the dailyprices sheet
@@ -56,13 +56,17 @@ function AddTodaysOpenClosePrices() { // Add the prices from the dailyprices she
   addPrices.setValues(dailyOpenClose);
 };
 
+
 function AddTodaysOpenCloseValues() {
+/*
   var spreadsheet = SpreadsheetApp.getActive();
   var Allocation_History = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('Allocation History'), true);
   var priorRange = Allocation_History.getRange(Allocation_History.getLastRow()-1,11,1,24);
   var newRange = Allocation_History.getRange(Allocation_History.getLastRow(),11,1,24);
   priorRange.copyTo(newRange);
+*/
 };
+
 
 /* function FreezePriceValues() {
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -72,12 +76,16 @@ function AddTodaysOpenCloseValues() {
 }
 */
 
+
 function FreezeOpenCloseValues() {
+/*
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   var Allocation_History = spreadsheet.getSheetByName('Allocation History');
   var range = Allocation_History.getRange(Allocation_History.getLastRow()-1,14,1,18); 
   range.copyTo(range, {contentsOnly: true});
+*/
 }
+
 
 function setupScoreResults() { // add today's row to the ScoreResults
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();

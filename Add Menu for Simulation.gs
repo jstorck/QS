@@ -91,12 +91,12 @@ Logger.log("Current nTimes from properties is=" +maxTimes);
     // First time only: Enter number of times to run the simulation
     var nRuns = Browser.inputBox('Current number of iterations is ' +iterations 
       +' with a minimum trade of ' +minTradeSh +'. Enter number of times to run the simulation (default is once):');
-    if (nRuns.length == 0) {nRuns = 1} // set default value of nRuns
+    if (nRuns === undefined || nRuns == 0) {nRuns = 1} // set default value of nRuns if user bypasses inputBox
 
     userProperties.setProperty('nTimes', nRuns);
     
     // Set the trigger to run the simulation every [adjust this in triggerMultipleSimRuns function] minutes
-    // Note that this trigger is deleted at the end of the last simulation run
+    // Note that this trigger is deleted at the end of the last simulation run (near the end of the simulation script)
     triggerMultipleSimRuns();
 
   } else { // for second and subsequent runs

@@ -22,7 +22,7 @@ function stopSimRunTrigger(){
         ScriptApp.deleteTrigger(triggers[i]);
 }
 
-function getProjectTriggersByName(name) {
+function getProjectTriggersByName(name) { // This is used to list in the logger all project triggers (next function)
     return ScriptApp.getProjectTriggers().filter(
         function(s) {return s.getHandlerFunction() === name;}
     );

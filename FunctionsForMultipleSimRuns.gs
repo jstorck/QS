@@ -36,4 +36,8 @@ function logAllProjectTriggers() {
   var funcName = allTriggers[i].getHandlerFunction();
     Logger.log(i +'/' +funcName);
   }
+  var userProperties = PropertiesService.getUserProperties();
+  var runs = Number(userProperties.getProperty('loopCounter'));
+  var times = Number(userProperties.getProperty('nTimes'));
+  Logger.log("User Properties, loopCounter=" +runs +" and nTimes=" +times);
 }

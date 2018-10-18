@@ -6,7 +6,7 @@ function onOpen() {
     .addItem('Retain current weights or change', 'menuItem3')
     .addItem('Simulate - uniform distribution around starting weights', 'simRunUniformDist')
     .addItem('Simulate - normal distribution around starting weights', 'menuItem5')
-    .addItem('Simulate - recursive simulation using sequential weights', 'menuItem6')
+    .addItem('Simulate - recalculate next days allocations using latest weights', 'recalcAlloc')
     .addItem('Daily update', 'menuItem7')
     .addToUi();
 }
@@ -71,7 +71,9 @@ function menuItem3() { // Use weights on Score Results sheet or enter new weight
 } // end menuItem3
 
 function simRunUniformDist() { // Run the simulation with uniform distribution of random weights
-  var spreadsheet = SpreadsheetApp.getActive();
+// Need to deal with aborted runs - need to refresh user props????
+
+var spreadsheet = SpreadsheetApp.getActive();
   var Score_Results = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('ScoreResults'), true);  
   var iterations = SpreadsheetApp.getActiveSheet().getRange('U1:U1').getValue();
   var minTradeSh = SpreadsheetApp.getActiveSheet().getRange('AC1:AC1').getValue();
@@ -131,7 +133,7 @@ function menuItem5() { // Run the simulation with normal distribution of random 
   Simulation_Results.showSheet();
 } // end menuItem5
 
-function menuItem6() { // Run simulation automatically up to nn times, recursively replacing the starting weights with the best weights
+function recalcAlloc() { // Run simulation automatically up to nn times, recursively replacing the starting weights with the best weights
   var spreadsheet = SpreadsheetApp.getActive();
   var Score_Results = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('ScoreResults'), true);  
   var iterations = SpreadsheetApp.getActiveSheet().getRange('U1:U1').getValue();

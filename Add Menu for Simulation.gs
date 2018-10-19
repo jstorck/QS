@@ -9,6 +9,9 @@ function onOpen() {
     .addItem('Simulate - recalculate next days allocations using latest weights', 'recalcAlloc')
     .addItem('Daily update', 'menuItem7')
     .addToUi();
+    
+    // Add this to make sure that any properties that have been set by another spreadsheet are cleared
+    refreshUserProps();
 }
 
 function menuItem1() {  // Retain or change number of iterations

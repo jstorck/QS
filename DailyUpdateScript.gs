@@ -7,6 +7,10 @@ if (isTradingDay(todaysDate())) {
  TransposeEODAllocationsToAllocationHistory();
 
  AddTodaysOpenClosePrices();
+// FreezePriceValues();
+
+ AddTodaysOpenCloseValues();
+ FreezeOpenCloseValues();
  
  var spreadsheet = SpreadsheetApp.getActive();
  var assetType = SpreadsheetApp.getActiveSpreadsheet().getName();

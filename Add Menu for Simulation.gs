@@ -76,7 +76,7 @@ function menuItem3() { // Use weights on Score Results sheet or enter new weight
 function simRunUniformDist() { // Run the simulation with uniform distribution of random weights
 // Need to deal with aborted runs - need to refresh user props????
 
-var spreadsheet = SpreadsheetApp.getActive();
+  var spreadsheet = SpreadsheetApp.getActive();
   var Score_Results = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('ScoreResults'), true);  
   var iterations = SpreadsheetApp.getActiveSheet().getRange('U1:U1').getValue();
   var minTradeSh = SpreadsheetApp.getActiveSheet().getRange('AC1:AC1').getValue();
@@ -93,33 +93,30 @@ Logger.log("Current nTimes from properties is=" +maxTimes);
   if (runNumber === undefined || runNumber == 0) { 
     refreshUserProps(); // sets loopCounter and nTimes to zero 
     Logger.log("loupCounter was undefined or zero but is now set to=" +runNumber); 
+
     // First time only: Enter number of times to run the simulation
     var nRuns = Browser.inputBox('Current number of iterations is ' +iterations 
       +' with a minimum trade of ' +minTradeSh +'. Enter number of times to run the simulation (default is once):');
     if (nRuns === undefined || nRuns == 0) {nRuns = 1} // set default value of nRuns if user bypasses inputBox
 
-    userProperties.setProperty('nTimes', nRuns);
+    userProperties.setProperty('nTimes', nRuns); 
+    userProperties.setProperty('loopCounter', 0); // This is first time around; loopCounter sh be zero but just to make sure 
     
     // Set the trigger to run the simulation every [adjust this in triggerMultipleSimRuns function] minutes
     // Note that this trigger is deleted at the end of the last simulation run (near the end of the simulation script)
     triggerMultipleSimRuns();
 
   } else { // for second and subsequent runs
-    Logger.log("Called simRunUniformDist() two or more times and loupCounter is=" +runNumber);
+Logger.log("Called simRunUniformDist() two or more times and loupCounter is=" +runNumber);
     var nRuns = Number(userProperties.getProperty('nTimes')); // otherwise nRuns would be undefined bc script has not been executed
-  }; 
-  
-//  Browser.msgBox('Run simulation for ' +iterations +' iterations, trading a minimum of ' +minTradeSh +' shares, and with weights = ' +weight);
-
-  var Simulation_Results = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('SimulationResults'), true);  
-  Simulation_Results.showSheet();  
+  }; // end else
   
   var newWeight = mcSimulation(iterations, weight, 1); // Type=1 is uniform distribution of random weights
 
   var Simulation_Results = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('SimulationResults'), true);  
-  Simulation_Results.showSheet();  
-  
-} // end menuItem4
+  Simulation_Results.showSheet();
+
+} // end simRunUniformDist (menuItem4)
 
 function menuItem5() { // Run the simulation with normal distribution of random weights
   var spreadsheet = SpreadsheetApp.getActive();

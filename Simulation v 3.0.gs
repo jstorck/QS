@@ -32,6 +32,11 @@ Logger.log("loopCounter at start of sim run=" +loopCounter +" / nRuns=" +nRuns);
 Logger.log("loopCounter at start of 'if' statement=" +loopCounter +" /limit= " +limit);
 
 // Begin actual simulation code ..........................................................................
+
+  // Display the simulation results sheet
+  var Simulation_Results = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('SimulationResults'), true);  
+  Simulation_Results.showSheet(); 
+
   // Store current weights in an array
   var weight = Score_Results.getRange('B2:F2').getValues();  // [0]5D [1]1M [2]3M [3]6M [4]1Y
   var initialWeight = Score_Results.getRange('B2:F2').getValues();
@@ -102,7 +107,14 @@ Logger.log("loopCounter at start of 'if' statement=" +loopCounter +" /limit= " +
   var numDays = Simulation_Results.getRange(Simulation_Results.getLastRow(),16,1,1).setHorizontalAlignment("center").setValue(numRows-1);
   var iterations = Simulation_Results.getRange(Simulation_Results.getLastRow(),17,1,1).setHorizontalAlignment("center").setValue(maxN);
   var runDate = Simulation_Results.getRange(Simulation_Results.getLastRow(),18,1,1).setNumberFormat("M/dd/yyyy at hh:mm").setHorizontalAlignment("center").setValue(new Date());
-  
+
+  // Record run number and max number of runs
+  var userProperties = PropertiesService.getUserProperties();
+  var runNumber = Simulation_Results.getRange(Simulation_Results.getLastRow(),19,1,1).setNumberFormat("##0").setHorizontalAlignment("center")
+    .setValue(Number(userProperties.getProperty('loopCounter'))+1);
+  var maxTimes = Simulation_Results.getRange(Simulation_Results.getLastRow(),20,1,1).setNumberFormat("##0").setHorizontalAlignment("center")
+    .setValue(Number(userProperties.getProperty('nTimes')));
+
   // Restore original weights before iteration
   var Score_Results = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('ScoreResults'), true);
   var weightRange = Score_Results.getRange('B2:F2');

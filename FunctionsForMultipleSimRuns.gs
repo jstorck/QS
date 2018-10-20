@@ -1,7 +1,7 @@
 function triggerMultipleSimRuns() {
   ScriptApp.newTrigger('simRunUniformDist')
     .timeBased()
-    .everyMinutes(1) // Change this to 1,5,10,15, or 20 mins to avoid exceeding execution limit
+    .everyMinutes(15) // Change this to 1,5,10,15, or 20 mins to avoid exceeding execution limit
     .create();
 }
 

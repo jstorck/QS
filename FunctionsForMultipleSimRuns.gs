@@ -1,7 +1,7 @@
 function triggerMultipleSimRuns() {
   ScriptApp.newTrigger('simRunUniformDist')
     .timeBased()
-    .everyMinutes(15) // Change this to 1,5,10,15, or 20 mins to avoid exceeding execution limit
+    .everyMinutes(10) // Change this to 1,5,10,15, or 20 mins to avoid exceeding execution limit
     .create();
 }
 
@@ -12,7 +12,7 @@ function refreshUserProps() { // need to run this once at start and at end
   var runs = Number(userProperties.getProperty('loopCounter'));
   var times = Number(userProperties.getProperty('nTimes'));
 
-  Logger.log("In refreshUserProps, loopCounter=" +runs +" and nTimes=" +times);
+Logger.log("In refreshUserProps, loopCounter=" +runs +" and nTimes=" +times);
 }
 
 function stopSimRunTrigger(){

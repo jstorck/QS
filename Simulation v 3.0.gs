@@ -58,7 +58,7 @@ Logger.log("loopCounter at start of 'if' statement=" +loopCounter +" /limit= " +
   if (type == 1) 
     {for (var i = 0; i<5; i++) {weight[0][i] = Math.random()};} // unstandardized weights can range from 0 to 1 uniformly distributed
 
-    else if (type == 2) {
+  else if (type == 2) {
       for (var i = 0; i<5; i++) {
       var min = bestWeight[i] - 0.50 * bestWeight[i];
       var max = bestWeight[i] + 0.50 * bestWeight[i];

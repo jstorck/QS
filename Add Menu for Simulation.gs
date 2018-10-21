@@ -5,7 +5,7 @@ function onOpen() {
     .addItem('Use same minimum trade or change', 'menuItem2')
     .addItem('Retain current weights or change', 'menuItem3')
     .addItem('Simulate - uniform distribution around starting weights', 'simRunUniformDist')
-    .addItem('Simulate - normal distribution around starting weights', 'menuItem5')
+    .addItem('Simulate - normal distribution around starting weights', 'sumRunNormalDist')
     .addItem('Simulate - recalculate next days allocations using latest weights', 'recalcAlloc')
     .addItem('Daily update', 'menuItem7')
     .addToUi();
@@ -118,7 +118,7 @@ Logger.log("Called simRunUniformDist() two or more times and loupCounter is=" +r
 
 } // end simRunUniformDist (menuItem4)
 
-function menuItem5() { // Run the simulation with normal distribution of random weights
+function sumRunNormalDist() { // Run the simulation with normal distribution of random weights
   var spreadsheet = SpreadsheetApp.getActive();
   var Score_Results = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('ScoreResults'), true);  
   var iterations = SpreadsheetApp.getActiveSheet().getRange('U1:U1').getValue();
@@ -127,11 +127,15 @@ function menuItem5() { // Run the simulation with normal distribution of random 
 
 //  Browser.msgBox('Run simulation for ' +iterations +' iterations, trading a minimum of ' +minTradeSh +' shares, and with weights = ' +weight);
 
+  var userProperties = PropertiesService.getUserProperties();
+  userProperties.setProperty('nTimes', 4); 
+  userProperties.setProperty('loopCounter', 0);
+
   var newWeight = mcSimulation(iterations, weight, 2);
 
   var Simulation_Results = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('SimulationResults'), true);  
   Simulation_Results.showSheet();
-} // end menuItem5
+} // end simRunNormalDist (menuItem5)
 
 function recalcAlloc() { // Run simulation automatically up to nn times, recursively replacing the starting weights with the best weights
   var spreadsheet = SpreadsheetApp.getActive();
@@ -139,7 +143,7 @@ function recalcAlloc() { // Run simulation automatically up to nn times, recursi
   var iterations = SpreadsheetApp.getActiveSheet().getRange('U1:U1').getValue();
   var minTradeSh = SpreadsheetApp.getActiveSheet().getRange('AC1:AC1').getValue();
   var weight = Score_Results.getRange('B2:F2').getValues();
-  recursiveSimulation(iterations,weight,3);
+  // recursiveSimulation(iterations,weight,3);
 } // end menuItem6
 
 function menuItem7() {

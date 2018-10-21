@@ -2,16 +2,19 @@
 // NEED TO FIX WEEKEND DATE ISSUES
 function dailyUpdate() {
 
-if (isTradingDay(todaysDate())) {
+  if (isTradingDay(todaysDate())) {
 
- TransposeEODAllocationsToAllocationHistory();
+  refreshTotalReturns();
 
- AddTodaysOpenClosePrices();
-// FreezePriceValues();
+  TransposeEODAllocationsToAllocationHistory();
 
- AddTodaysOpenCloseValues();
- FreezeOpenCloseValues();
- 
+  AddTodaysOpenClosePrices();
+
+/* ALSO SHOULD DELETE THIS EXTRANEOUS FUNCTION FROM THE FunctionForDailyUpdate script
+  AddTodaysOpenCloseValues();
+  FreezeOpenCloseValues();
+*/
+
  var spreadsheet = SpreadsheetApp.getActive();
  var assetType = SpreadsheetApp.getActiveSpreadsheet().getName();
  var Score_Results = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('ScoreResults'), true);

@@ -139,7 +139,7 @@ Logger.log("loopCounter at start of 'if' statement=" +loopCounter +" /limit= " +
     stopSimRunTrigger();
     Logger.log("stopSimRunTrigger has run (trigger for simRunUniformDist has been deleted");
 
-    refreshUserProps(); // to clear out loopCounter and nTimes
+    resetUserProps(); // to clear out loopCounter and nTimes
   } // end of the ELSE
 
 return iterations, bestWeight, type;

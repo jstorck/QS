@@ -8,10 +8,11 @@ function onOpen() {
     .addItem('Simulate - normal distribution around starting weights', 'sumRunNormalDist')
     .addItem('Simulate - recalculate next days allocations using latest weights', 'recalcAlloc')
     .addItem('Daily update', 'menuItem7')
+    .addItem('Refresh total returns from ETFScreen.com', 'refreshTotalReturns')
     .addToUi();
     
     // Add this to make sure that any properties that have been set by another spreadsheet are cleared
-    refreshUserProps();
+    resetUserProps();
 }
 
 function menuItem1() {  // Retain or change number of iterations
@@ -91,7 +92,7 @@ Logger.log("Current nTimes from properties is=" +maxTimes);
 
   // On first run, loopCounter in properties should be undefined or zero, so get user input re number of runs and set trigger
   if (runNumber === undefined || runNumber == 0) { 
-    refreshUserProps(); // sets loopCounter and nTimes to zero 
+    resetUserProps(); // sets loopCounter and nTimes to zero 
     Logger.log("loupCounter was undefined or zero but is now set to=" +runNumber); 
 
     // First time only: Enter number of times to run the simulation

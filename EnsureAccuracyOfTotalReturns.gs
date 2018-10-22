@@ -9,5 +9,8 @@ function refreshTotalReturns() { // Ensures that most current total returns are 
   // Copy URL to cell so that importXML function reloads current data
   var screenURL = ETFScreen.getRange("W1:W1").getValue();
   importXMLCell.setValue(screenURL);
- 
+
+  var ETFList = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('ETF List'), true);  
+  ETFList.showSheet(); 
+
 }

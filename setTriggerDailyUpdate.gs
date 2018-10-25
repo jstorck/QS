@@ -5,6 +5,6 @@ function triggerDailyUpdate() {
    for (var i=0; i<days.length; i++) {
       ScriptApp.newTrigger("dailyUpdate")
                .timeBased().onWeekDay(days[i])
-               .atHour(15).create();
+               .atHour(16).create();
    }
 }

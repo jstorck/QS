@@ -6,13 +6,15 @@ function triggerMultipleSimRuns() {
 }
 
 function resetUserProps() { // need to run this once at start and at end
+Logger.log("Before resetUserProps, loopCounter=" +runs +" and nTimes=" +times);
+
   var userProperties = PropertiesService.getUserProperties();
   userProperties.setProperty('loopCounter', 0); // counts each time the sim is run
   userProperties.setProperty('nTimes', 0); // tracks maximum number of times the sim is run
   var runs = Number(userProperties.getProperty('loopCounter'));
   var times = Number(userProperties.getProperty('nTimes'));
 
-Logger.log("In resetUserProps, loopCounter=" +runs +" and nTimes=" +times);
+Logger.log("After resetUserProps, loopCounter=" +runs +" and nTimes=" +times);
 }
 
 function stopSimRunTrigger(){

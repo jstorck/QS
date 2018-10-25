@@ -56,6 +56,37 @@ function AddTodaysOpenClosePrices() { // Add the prices from the dailyprices she
   addPrices.setValues(dailyOpenClose);
 };
 
+
+function AddTodaysOpenCloseValues() {
+/*
+  var spreadsheet = SpreadsheetApp.getActive();
+  var Allocation_History = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('Allocation History'), true);
+  var priorRange = Allocation_History.getRange(Allocation_History.getLastRow()-1,11,1,24);
+  var newRange = Allocation_History.getRange(Allocation_History.getLastRow(),11,1,24);
+  priorRange.copyTo(newRange);
+*/
+};
+
+
+/* function FreezePriceValues() {
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var Prices = spreadsheet.getSheetByName('Prices');
+  var range = Prices.getRange(Prices.getLastRow(),2,1,18); 
+  range.copyTo(range, {contentsOnly: true});
+}
+*/
+
+
+function FreezeOpenCloseValues() {
+/*
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var Allocation_History = spreadsheet.getSheetByName('Allocation History');
+  var range = Allocation_History.getRange(Allocation_History.getLastRow()-1,14,1,18); 
+  range.copyTo(range, {contentsOnly: true});
+*/
+}
+
+
 function setupScoreResults() { // add today's row to the ScoreResults
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   var Score_Results = spreadsheet.getSheetByName('ScoreResults');

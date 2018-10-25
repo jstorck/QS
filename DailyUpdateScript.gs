@@ -4,23 +4,29 @@ function dailyUpdate() {
 
   if (isTradingDay(todaysDate())) {
 
-  AddTodaysOpenClosePrices()
   refreshTotalReturns();
 
   TransposeEODAllocationsToAllocationHistory();
 
-  var spreadsheet = SpreadsheetApp.getActive();
-  var assetType = SpreadsheetApp.getActiveSpreadsheet().getName();
-  var Score_Results = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('ScoreResults'), true);
-  var minTradeSh = Score_Results.getRange('AC1:AC1').getValue(); 
-  eMailTrades(assetType, minTradeSh);
-  
-  captureDailyTotRet();
- 
-  setupScoreResults();  // get the sheet ready for simulation
-  updateCumulativePL();
+  AddTodaysOpenClosePrices();
 
-  }  // end if
+/* ALSO SHOULD DELETE THIS EXTRANEOUS FUNCTION FROM THE FunctionForDailyUpdate script
+  AddTodaysOpenCloseValues();
+  FreezeOpenCloseValues();
+*/
+
+ var spreadsheet = SpreadsheetApp.getActive();
+ var assetType = SpreadsheetApp.getActiveSpreadsheet().getName();
+ var Score_Results = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('ScoreResults'), true);
+ var minTradeSh = Score_Results.getRange('AC1:AC1').getValue(); 
+ eMailTrades(assetType, minTradeSh);
+  
+ captureDailyTotRet();
+ 
+ setupScoreResults();  // get the sheet ready for simulation
+ updateCumulativePL();
+
+}  // end if
 }  
 
 function isTradingDay() {

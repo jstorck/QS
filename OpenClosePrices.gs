@@ -52,12 +52,6 @@ var closeCol = dailyPrices.getRange(dailyPrices.getLastRow(),4);
 closeCol.setFormula('index(importdata("' +url +'"),14,1)');
 priceData[i][3] = closeCol.getDisplayValue().match(/"([^']+)"/)[1];
 
-/*
-var range = dailyPrices.getRange("A:D"); 
-var target = dailyPrices.getRange("F:I");
-range.copyTo(target, {contentsOnly: true});
-*/
-
 Logger.log("i=" +i +"/" +priceData[i][0]+'/' +priceData[i][1] +'/' +priceData[i][2]+'/' +priceData[i][3]);
 
 } // end major loop through symbols

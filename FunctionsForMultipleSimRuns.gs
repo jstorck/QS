@@ -5,6 +5,19 @@ function triggerMultipleSimRuns() {
     .create();
 }
 
+function testUserPropsAsArray() {
+  var loopCounter = [];
+  var userProperties = PropertiesService.getUserProperties();
+  userProperties.setProperty('loopCounter[0]', 0); // counts each time the sim is run
+  userProperties.setProperty('loopCounter[1]', 1); // counts each time the sim is run
+ 
+  var counter1 = Number(userProperties.getProperty('loopCounter[0]'));
+  var counter2 = Number(userProperties.getProperty('loopCounter[1]'));
+
+Logger.log("loopCounter[0]=" +counter1 +"\n" +"loopCounter[1]=" +counter2);
+
+}
+
 function resetUserProps() { // need to run this once at start and at end
 Logger.log("Before resetUserProps, loopCounter=" +runs +" and nTimes=" +times);
 
@@ -30,14 +43,17 @@ function getProjectTriggersByName(name) { // This is used to list in the logger 
     );
 }
 
-function logAllProjectTriggers() {
+function logAllProjectTriggers() { 
   // Loop over all triggers and list them
   var allTriggers = ScriptApp.getProjectTriggers();
   
   for (var i = 0; i < allTriggers.length; i++) {
   var funcName = allTriggers[i].getHandlerFunction();
-    Logger.log(i +'/' +funcName);
+  Logger.log(i +'/' +funcName);
   }
+}
+
+function logAllUserProperties() {
   var userProperties = PropertiesService.getUserProperties();
   var runs = Number(userProperties.getProperty('loopCounter'));
   var times = Number(userProperties.getProperty('nTimes'));

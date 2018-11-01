@@ -96,8 +96,11 @@ Logger.log("Current nTimes from properties is=" +maxTimes);
     Logger.log("loupCounter was undefined or zero but is now set to=" +runNumber); 
 
     // First time only: Enter number of times to run the simulation
-    var nRuns = Browser.inputBox('Current number of iterations is ' +iterations 
-      +' with a minimum trade of ' +minTradeSh +'. Enter number of times to run the simulation (default is once):');
+    var nRuns = Browser.inputBox(
+          'Current number of iterations is ' +iterations 
+          +' with a minimum trade of ' +minTradeSh 
+          + ' and weights of ' +weight 
+          +'. Enter number of times to run the simulation (default is once):');
     if (nRuns === undefined || nRuns == 0) {nRuns = 1} // set default value of nRuns if user bypasses inputBox
 
     userProperties.setProperty('nTimes', nRuns); 

@@ -5,6 +5,13 @@ function triggerMultipleSimRuns() {
     .create();
 }
 
+function triggerExhaustiveSimulation() {
+  ScriptApp.newTrigger('exhaustSim')
+    .timeBased()
+    .everyMinutes(10) // Change this to 1,5,10,15, or 20 mins to avoid exceeding execution limit
+    .create();
+}
+
 function testUserPropsAsArray() {
   var loopCounter = [];
   var userProperties = PropertiesService.getUserProperties();
@@ -57,5 +64,7 @@ function logAllUserProperties() {
   var userProperties = PropertiesService.getUserProperties();
   var runs = Number(userProperties.getProperty('loopCounter'));
   var times = Number(userProperties.getProperty('nTimes'));
-  Logger.log("User Properties, loopCounter=" +runs +" and nTimes=" +times);
+  var runLimit = Number(userProperties.getProperty('runLimit[]'));
+
+Logger.log("User Properties, loopCounter=" +runs +" and nTimes=" +times +"\nrunLimit=" +runLimit);
 }

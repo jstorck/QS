@@ -6,7 +6,8 @@ function onOpen() {
     .addItem('Retain current weights or change', 'menuItem3')
     .addItem('Simulate - uniform distribution around starting weights', 'simRunUniformDist')
     .addItem('Simulate - normal distribution around starting weights', 'sumRunNormalDist')
-    .addItem('Simulate - recalculate next days allocations using latest weights', 'recalcAlloc')
+    .addItem('Exhaustive simulation - iterate sequentially through all weights', 'simExhaust')
+    .addItem('Recalculate next days allocations using latest weights', 'recalcAlloc')
     .addItem('Daily update', 'menuItem7')
     .addItem('Refresh total returns from ETFScreen.com', 'refreshTotalReturns')
     .addToUi();

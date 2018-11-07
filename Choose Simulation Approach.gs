@@ -1,4 +1,4 @@
-function chooseApproach() {
+function chooseApproach() {  // 2018-11-05 NOT CURRENTLY USED ANYWHERE
 
 /* Display alert box and choose one of two options
    -Cycle by replacing original weights with most recent best weights

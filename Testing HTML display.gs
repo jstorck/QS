@@ -8,7 +8,9 @@
 function showSidebar() {
   var html = HtmlService.createHtmlOutputFromFile('Sidebar')
       .setTitle('Choose simulation approach')
-      .setWidth(300);
+      .setHeight(150)
+//      .setWidth(300);
+  ;
   SpreadsheetApp.getUi() 
   .showSidebar(html);
 } 

@@ -1,4 +1,4 @@
-function getOpenClosePrices() { 
+function getOpenClosePrices() { // USE THIS ONLY IF IEX PRICES ARE NOT AVAILABLE
 
 // Source of quotes is alphavantage.co
 var apiKey = "8GNYN0X8JQAJC1ON";

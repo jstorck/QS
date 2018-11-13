@@ -6,11 +6,10 @@ function dailyUpdate() {
   var assetType = SpreadsheetApp.getActiveSpreadsheet().getName();
   var Score_Results = spreadsheet.setActiveSheet(spreadsheet.getSheetByName('ScoreResults'), true);
 
-  // Only run this if daily update has not yet been run for today's date, i.e., don't run this twice on the same day
+  // Only run this if daily update has not yet been run for today's date
   var today = new Date();
   var currentDayOfMonth = today.getDate();
   var lastRunDayOfMonth = Score_Results.getRange(Score_Results.getLastRow(),1).getValue().getDate();
-  var currentDayOfWeek = today.getDay(); // 0=Sunday
 
   if (currentDayOfMonth > lastRunDayOfMonth) {
 
@@ -29,7 +28,7 @@ function dailyUpdate() {
     setupScoreResults();  // get the sheet ready for simulation
     updateCumulativePL();
 
-    }  // end if it is a trading day
+  }  // end if it is a trading day
   
   } // end if daily update has not yet been run
 }  

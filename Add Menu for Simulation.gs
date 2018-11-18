@@ -12,8 +12,12 @@ function onOpen() {
     .addItem('Refresh total returns from ETFScreen.com', 'refreshTotalReturns')
     .addToUi();
     
-    // Add this to make sure that any properties that have been set by another spreadsheet are cleared
+    // Make sure that any properties that have been set by another spreadsheet are cleared
     resetUserProps();
+    // Delete and reestablish all triggers
+    deleteAllProjectTriggers();
+    triggerGetDailyOpenClosePrices();
+    triggerDailyUpdate();
 }
 
 function menuItem1() {  // Retain or change number of iterations

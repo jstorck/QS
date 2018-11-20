@@ -84,6 +84,6 @@ function calculateVolatility() { // Excluding cash (MINT)
     .setNumberFormat("#0.00").setHorizontalAlignment("center")
     .setFormula("=B5^B6");
 
-// VolAdj.getRange('K2:K2').clear();
+  VolAdj.getRange('K2:S4').clear(); // Clean out most of the calculated entries
 
 }

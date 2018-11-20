@@ -12,22 +12,27 @@ function calculateVolatility() {
   // Clear prior data from VolatilityAdjustment sheet
   VolAdj.getRange('B2:Z' +VolAdj.getLastRow()+1).clearContent();
 
-  // Iterate through symbols
+  // Iterate through symbols to calculate std dev for all tot ret data
   for (j=0; j<9; j++) { 
   var stdevCol = String.fromCharCode(75+j);
   var targetCol = String.fromCharCode(66+j);
 
-//  var stdDevToDate = VolAdj.getRange("K2")
-Logger.log("'" +stdevCol +"2:" +stdevCol +"2'");
-  var targetRange = "'" +stdevCol +"2:" +stdevCol +"2'";
-Logger.log(targetRange);
+  var targetRange = stdevCol +"2";
+
+  // Pick the 5D tot ret columns
+  var startCol = 1 + 5 * j;
+  if (startCol < 26) { var startLetter = String.fromCharCode(65+startCol) }
+    else { var startLetter = "A" +String.fromCharCode(65+startCol - 26);  }
+
   var stdDevToDate = VolAdj.getRange(targetRange)
     .setNumberFormat("#0.00").setHorizontalAlignment("center")
-    .setFormula("stdev(TotRetHistory!B3:B" +lastTotRetRow +")"); 
+    .setFormula("stdev(TotRetHistory!" +startLetter +firstTotRetRow +":" +startLetter +lastTotRetRow +")"); 
+
+  VolAdj.getRange(targetCol +'2')
+    .setNumberFormat("#0.00").setHorizontalAlignment("center")
+    .setValue(VolAdj.getRange(stdevCol +'2:' +stdevCol +'2').getValue());
+  
   }
-
-
-  VolAdj.getRange('B2').setValue(VolAdj.getRange('K2:K2').getValue());
-  VolAdj.getRange('K2:K2').clear();
+  // VolAdj.getRange('K2:K2').clear();
 
 }

@@ -27,6 +27,8 @@ function dailyUpdate() {
  
     setupScoreResults();  // get the sheet ready for simulation
     updateCumulativePL();
+    
+    calculateVolatility() // To adjust the allocations on the ETF List sheet
 
   }  // end if it is a trading day
   

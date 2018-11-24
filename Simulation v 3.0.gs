@@ -60,8 +60,8 @@ Logger.log("loopCounter at start of 'if' statement=" +loopCounter +" /limit= " +
 
   else if (type == 2) {
       for (var i = 0; i<5; i++) {
-      var min = bestWeight[i] - 0.50 * bestWeight[i];
-      var max = bestWeight[i] + 0.50 * bestWeight[i];
+      var min = bestWeight[i] - 0.10; // * bestWeight[i];
+      var max = bestWeight[i] + 0.10; // * bestWeight[i];
       weight[0][i] = randn_bm(min, max, 1); // unstandardized weights can range from min to max normally distributed, unskewed
         // Alternative randomization: weight[0][i] = gaussianRand();
       } // end for loop
